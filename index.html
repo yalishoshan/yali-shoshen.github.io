@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיעורים פרטיים - מתמטיקה ופיזיקה</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #00bfff;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .floating-math {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.1;
+            color: white;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .math-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .math-2 { top: 20%; right: 15%; animation-delay: 2s; }
+        .math-3 { bottom: 30%; left: 20%; animation-delay: 4s; }
+        .math-4 { bottom: 10%; right: 10%; animation-delay: 6s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0px) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a237e;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #3949ab;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .hero-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(128, 191, 255, 0.3);
+            animation: slideInUp 1.2s ease-out;
+            color: #1a237e;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(128, 191, 255, 0.3);
+            color: #1a237e;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .achievement {
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid rgba(128, 191, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(57, 73, 171, 0.2);
+        }
+
+        .subject-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subject-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .subject-details {
+            font-size: 0.9rem;
+            color: #333333;
+            line-height: 1.4;
+        }
+
+        .info-section {
+            background: rgba(128, 191, 255, 0.1);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(128, 191, 255, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+            position: relative;
+            overflow: hidden;
+            min-width: 250px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26, 35, 126, 0.6);
+            background: linear-gradient(45deg, #303f9f, #5c6bc0);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(45deg, #20bd5a, #0f7a6b);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-call {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-call:hover {
+            background: linear-gradient(45deg, #ff5252, #ff8a80);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(128, 191, 255, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            direction: rtl;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3949ab;
+            box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .method-card {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(128, 191, 255, 0.3);
+        }
+
+        .method-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333333;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1a237e;
+            transition: 0.3s;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8ff);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+        }
+
+        .tip-category {
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .tip-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+
+        .tip-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tip-tag {
+            background: rgba(57, 73, 171, 0.1);
+            color: #3949ab;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(57, 73, 171, 0.2);
+        }
+
+        .tips-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(128, 191, 255, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(128, 191, 255, 0.2);
+        }
+
+        .tips-intro h3 {
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .tips-intro p {
+            color: #333333;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 30px;
+                padding-top: 50px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-container, .content-container {
+                padding: 30px 20px;
+                margin: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subjects {
+                grid-template-columns: 1fr;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                min-width: 200px;
+                padding: 12px 25px;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-math math-1">∑</div>
+    <div class="floating-math math-2">∆</div>
+    <div class="floating-math math-3">∫</div>
+    <div class="floating-math math-4">π</div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🧠 יהלי שושן - שיעורים פרטיים</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">בית</a></li>
+                <li><a href="#" onclick="showPage('method')">שיטת ההוראה</a></li>
+                <li><a href="#" onclick="showPage('tips')">טיפים ומאמרים</a></li>
+                <li><a href="#" onclick="showPage('contact')">יצירת קשר</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- דף הבית -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="hero-container">
+                <div class="header">
+                    <h1>🧠 יהלי שושן - שיעורים פרטיים</h1>
+                    <div class="tagline">מתמטיקה ופיזיקה בצפון תל אביב</div>
+                    <div class="achievement">🏆 מורה עם ניסיון</div>
+                </div>
+
+                <div class="subjects">
+                    <div class="subject-card">
+                        <div class="subject-icon">🔢</div>
+                        <div class="subject-title">מתמטיקה</div>
+                        <div class="subject-details">
+                            יסודי • הכנה לתיכון<br>
+                            4 ו-5 יחידות
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">🧪</div>
+                        <div class="subject-title">פיזיקה</div>
+                        <div class="subject-details">
+                            חשמל • מכניקה<br>
+                            לתיכון ולבגרות
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-item">
+                        <span>📍</span>
+                        <span>השיעורים בצפון תל אביב או אונליין</span>
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍🏫</span>
+                        <span>מורה עם ניסיון - מבין בדיוק מה צריך להצליח</span>
+                    </div>
+                    <div class="info-item">
+                        <span>📆</span>
+                        <span>זה הזמן לנצל את החופש ולהגיע מוכנים!</span>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <a href="https://wa.me/972547384087" class="btn btn-whatsapp" target="_blank">
+                        <span>💬</span>
+                        <span>שלח הודעה בוואטסאפ</span>
+                    </a>
+                    <a href="tel:0547384087" class="btn btn-call">
+                        <span>📞</span>
+                        <span>התקשר עכשיו: 054-738-4087</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- דף שיטת ההוראה -->
+    <div id="method" class="page">
+        <div class="container">
+            <div class="content-container">
+                <h2>🎯 שיטת ההוראה שלי</h2>
+                
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>🎯</span>
+                        <span>אווירה דינמית וחדשנית</span>
+                    </div>
+                    <div class="method-description">
+                        השיטה שלי מתבססת על יצירת אווירה דינמית וחדשנית המותאמת לדור הצעיר. כמורה צעיר, אני מעביר את החומר בצורה שיוצרת חיבור ישיר עם התלמיד ומעניקה לו תחושה של ביטחון במרחב לימודי תומך ונעים.
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>📚</span>
+                        <span>מיומנות ושיטות מתקדמות</span>
+                    </div>
+                    <div class="method-description">
+                        המומחיות שלי בתחום המתמטיקה משולבת עם עבודה על חשיבה אלגוריתמית ומדעית, פרקטיקה, הנחלת הרגלי למידה טובים וסבלנות.
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>💡</span>
+                        <span>התאמה מדויקת ויישום מעשי</span>
+                    </div>
+                    <div class="method-description">
+                        אני דואג ליצור תכנית לימודים מותאמת בדיוק לרמת היכולת של כל תלמיד ולהתאים את סגנון ההוראה שלי בהתאם. בתהליך הלמידה, אנו עובדים עם החומר הספציפי ומבחני ההערכה מבית הספר בו לומד התלמיד, כדי להבטיח התאמה מושלמת לדרישות הלימודיות הפורמליות.
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn" onclick="showPage('contact')">
+                        <span>📞</span>
+                        <span>בוא נתחיל!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- דף טיפים ומאמרים -->
+    <div id="tips" class="page">
+        <div class="container">
+            <div class="content-container">
+                <h2>💡 טיפים ומאמרים</h2>
+                
+                <div class="tips-intro">
+                    <h3>כאן תמצאו טיפים שימושיים ללמידה יעילה</h3>
+                    <p>אוסף של עצות מעשיות, טכניקות לימוד וכלים שיעזרו לכם להצליח במתמטיקה ופיזיקה</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-category">מתמטיקה</div>
+                    <div class="tip-title">
+                        <span>🔢</span>
+                        <span>איך להתמודד עם חרדת מתמטיקה</span>
+                    </div>
+                    <div class="tip-content">
+                        חרדת מתמטיקה היא תופעה נפוצה שמשפיעה על הרבה תלמידים. הסיבות העיקריות הן חוויות שליליות בעבר, חוסר ביטחון עצמי ולחץ חברתי. כדי להתגבר על זה, חשוב לבנות בסיס חזק בהדרגה, לתרגל בקצב אישי ולחגוג הצלחות קטנות. זכרו - כל אחד יכול ללמוד מתמטיקה!
+                    </div>
+                    <div class="tip-tags">
+                        <span class="tip-tag">חרדה</span>
+                        <span class="tip-tag">ביטחון עצמי</span>
+                        <span class="tip-tag">מוטיבציה</span>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-category">טכניקות לימוד</div>
+                    <div class="tip-title">
+                        <span>📚</span>
+                        <span>5 שלבים להבנת נושא חדש במתמטיקה</span>
+                    </div>
+                    <div class="tip-content">
+                        <strong>שלב 1:</strong> קראו את הנושא בספר ללא פתרון תרגילים<br>
+                        <strong>שלב 2:</strong> צפו בהסבר וידאו או דוגמאות<br>
+                        <strong>שלב 3:</strong> פתרו תרגיל פשוט עם עזרה<br>
+                        <strong>שלב 4:</strong> פתרו תרגיל בעצמכם<br>
+                        <strong>שלב 5:</strong> לימדו מישהו אחר - זה יבדוק את ההבנה שלכם
+                    </div>
+                    <div class="tip-tags">
+                        <span class="tip-tag">שיטת לימוד</span>
+                        <span class="tip-tag">הבנה</span>
+                        <span class="tip-tag">תרגול</span>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-category">פיזיקה</div>
+                    <div class="tip-title">
+                        <span>🧪</span>
+                        <span>כיצד לפתור בעיות בפיזיקה בצורה מסודרת</span>
+                    </div>
+                    <div class="tip-content">
+                        בפיזיקה חשוב לעבוד בשיטתיות: זהו את הנתונים, רשמו את מה שמבוקש, ציירו סקיצה או דיאגרמה, בחרו את הנוסחאות הרלוונטיות, הציבו ופתרו, ולבסוף - בדקו שהתשובה הגיונית. זכרו שפיזיקה היא לא רק נוסחאות, אלא הבנה של התופעות בטבע.
+                    </div>
+                    <div class="tip-tags">
+                        <span class="tip-tag">פתרון בעיות</span>
+                        <span class="tip-tag">שיטתיות</span>
+                        <span class="tip-tag">הגיון</span>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-category">מבחנים</div>
+                    <div class="tip-title">
+                        <span>⏰</span>
+                        <span>איך להתכונן למבחן בגרות במתמטיקה</span>
+                    </div>
+                    <div class="tip-content">
+                        התחילו את ההכנה לפחות חודש לפני המבחן. חלקו את החומר לנושאים ותרגלו נושא אחד כל יום. פתרו מבחני עבר בתנאי מבחן אמיתיים. זהו את הנושאים החלשים שלכם והשקיעו בהם זמן נוסף. ביום המבחן - קראו כל שאלה בעיון, התחילו מהשאלות הקלות והשאירו זמן לבדיקה.
+                    </div>
+                    <div class="tip-tags">
+                        <span class="tip-tag">בגרות</span>
+                        <span class="tip-tag">הכנה למבחן</span>
+                        <span class="tip-tag">ניהול זמן</span>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-category">כללי</div>
+                    <div class="tip-title">
+                        <span>💪</span>
+                        <span>יצירת הרגלי לימוד נכונים</span>
+                    </div>
+                    <div class="tip-content">
+                        קבעו מקום קבוע ללימוד, לימדו כל יום באותה שעה, תחילו בתרגילים קלים ועברו לקשים יותר. חשוב לקחת הפסקות קצרות כל 45 דקות ולתגמל את עצמכם על הישגים. זכרו - עדיף ללמוד 30 דקות כל יום מאשר 5 שעות פעם בשבוע.
+                    </div>
+                    <div class="tip-tags">
+                        <span class="tip-tag">הרגלים</span>
+                        <span class="tip-tag">משמעת</span>
+                        <span class="tip-tag">יעילות</span>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn" onclick="showPage('contact')">
+                        <span>📞</span>
+                        <span>רוצה עזרה אישית? בוא נתחיל!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- דף יצירת קשר -->
+    <div id="contact" class="page">
+        <div class="container">
+            <div class="content-container">
+                <h2>📞 יצירת קשר</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>054-738-4087</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>💬</span>
+                        <span>זמין גם בוואטסאפ</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>צפון תל אביב + שיעורים אונליין</span>
+                    </div>
+                </div>
+
+                <form onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">שם התלמיד/ה:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parent">שם ההורה:</label>
+                        <input type="text" id="parent" name="parent" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">טלפון:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grade">כיתה:</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">בחר כיתה</option>
+                            <option value="ח">ח'</option>
+                            <option value="ט">ט'</option>
+                            <option value="י">י'</option>
+                            <option value="יא">יא'</option>
+                            <option value="יב">יב'</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">מקצוע:</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">בחר מקצוע</option>
+                            <option value="math">מתמטיקה</option>
+                            <option value="physics">פיזיקה</option>
+                            <option value="both">שני המקצועות</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level">רמה:</label>
+                        <select id="level" name="level">
+                            <option value="">בחר רמה</option>
+                            <option value="3">3 יחידות</option>
+                            <option value="4">4 יחידות</option>
+                            <option value="5">5 יחידות</option>
+                            <option value="help">עזרה כללית</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">העדפת מיקום:</label>
+                        <select id="location" name="location" required>
+                            <option value="">בחר מיקום</option>
+                            <option value="home">בבית (צפון תל אביב)</option>
+                            <option value="online">אונליין</option>
+                            <option value="both">גמיש</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">הערות נוספות:</label>
+                        <textarea id="message" name="message" placeholder="ספרו על המצב הנוכחי של התלמיד, יעדים, או כל דבר שחשוב לכם שאדע..."></textarea>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn">
+                            <span>📧</span>
+                            <span>שלח פנייה</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="buttons" style="margin-top: 20px;">
+                    <a href="https://wa.me/972547384087" class="btn btn-whatsapp" target="_blank">
+                        <span>💬</span>
+                        <span>העדפה לוואטסאפ? לחץ כאן</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Close mobile menu
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Create WhatsApp message
+            const message = `שלום! אני מעוניין/ת בשיעורים פרטיים:
+            
+👤 שם התלמיד/ה: ${data.name}
+👨‍👩‍👧‍👦 שם ההורה: ${data.parent}
+📞 טלפון: ${data.phone}
+🎓 כיתה: ${data.grade}
+📚 מקצוע: ${data.subject}
+📊 רמה: ${data.level}
+📍 מיקום: ${data.location}
+💬 הערות: ${data.message}`;
+            
+            const whatsappUrl = `https://wa.me/972547384087?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Add ripple effect to buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.6);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+
+        // CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
