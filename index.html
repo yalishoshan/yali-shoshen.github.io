@@ -121,7 +121,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -129,17 +129,25 @@
             padding: 0 40px;
         }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #ffffff;
-            opacity: 0.9;
-        }
-
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             list-style: none;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            opacity: 0.9;
         }
 
         .nav-links a {
@@ -173,20 +181,22 @@
         }
 
         .signup-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: #ffffff;
+            background: #ffffff;
+            border: 1px solid #ffffff;
+            color: #000000;
             padding: 8px 20px;
             border-radius: 4px;
             font-size: 0.9rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
         }
 
         .signup-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #ffffff;
+            color: #000000;
         }
 
         .page {
@@ -208,9 +218,33 @@
             justify-content: center;
             text-align: center;
             padding: 0 40px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.03) 100%);
+        }
+
+        .hero-section::before {
+            content: '∫ ∑ π √ ∆ ∞ α β ∂ γ λ μ σ ω ϕ θ';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 8rem;
+            font-family: serif;
+            color: rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            pointer-events: none;
+            letter-spacing: 3rem;
+            line-height: 1.5;
+            z-index: 1;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
             animation: fadeInUp 1.5s ease-out;
         }
@@ -276,12 +310,14 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            min-width: 250px;
+            justify-content: center;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
 
         .btn-secondary {
@@ -337,13 +373,79 @@
             border-radius: 12px;
             padding: 40px 30px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            opacity: 0;
+            animation: slideInUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Math card - מתמטיקה */
+        .card:nth-child(1)::before {
+            content: '∑ ∫ π';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: serif;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.04);
+            letter-spacing: 0.5rem;
+            z-index: 1;
+        }
+
+        /* Physics card - פיזיקה */
+        .card:nth-child(2)::before {
+            content: 'E=mc² F=ma';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: serif;
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.04);
+            line-height: 1.8;
+            z-index: 1;
+        }
+
+        /* Dapar card - דפר */
+        .card:nth-child(3)::before {
+            content: '●○◆□△';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: rgba(0, 0, 0, 0.04);
+            letter-spacing: 0.3rem;
+            z-index: 1;
+        }
+
+        .card .card-icon,
+        .card .card-title,
+        .card .card-description {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) rotateY(5deg);
             background: rgba(0, 0, 0, 0.08);
             border-color: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .card-icon {
@@ -405,9 +507,9 @@
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             padding: 40px;
         }
@@ -420,7 +522,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #ffffff;
+            color: #000000;
             font-size: 1rem;
         }
 
@@ -428,10 +530,10 @@
         .form-group textarea {
             width: 100%;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 8px;
-            color: #ffffff;
+            color: #000000;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -439,13 +541,13 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.5);
         }
 
         .form-group textarea {
@@ -516,34 +618,26 @@
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0 20px;
+                flex-wrap: wrap;
+                gap: 15px;
             }
 
             .nav-links {
-                position: fixed;
-                top: 70px;
-                right: -100%;
+                order: 3;
                 width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 30px;
-                padding-top: 50px;
-                transition: right 0.3s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
+                justify-content: center;
+                padding-top: 15px;
+                gap: 20px;
+                flex-wrap: wrap;
             }
 
             .hamburger {
-                display: flex;
+                display: none;
             }
 
             .hero-section {
                 padding: 0 20px;
+                padding-top: 120px;
             }
             
             .hero-title {
@@ -608,6 +702,7 @@
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')" class="active">בית</a></li>
                 <li><a href="#" onclick="showPage('method')">שיטת הוראה</a></li>
+                <li><a href="#" onclick="showPage('dapar')">הכנה לדפר</a></li>
                 <li><a href="#" onclick="showPage('tips')">טיפים</a></li>
                 <li><a href="#" onclick="showPage('contact')">יצירת קשר</a></li>
             </ul>
@@ -624,7 +719,7 @@
     <div id="home" class="page active">
         <div class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title">שיעורים פרטיים</h1>
+                <h1 class="hero-title">יהלי שושן - שיעורים פרטיים</h1>
                 <div class="hero-subtitle">מתמטיקה ופיזיקה ברמה הגבוהה ביותר</div>
                 <div class="hero-description">
                     מורה עם ניסיון מלמד במתודה ייחודית המותאמת לכל תלמיד. 
@@ -661,6 +756,14 @@
                     <div class="card-description">
                         חשמל, מכניקה לתיכון ולבגרות.
                         הסבר ברור של תופעות וחוקים פיזיקליים.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">הכנה לדפר - צו ראשון</div>
+                    <div class="card-description">
+                        הכנה מתמטית מותאמת למבחן הדפר בצו ראשון.
+                        חיזוק נושאים קריטיים ואסטרטגיות פתרון.
                     </div>
                 </div>
             </div>
@@ -713,12 +816,76 @@
         </div>
     </div>
 
+    <!-- דף הכנה לדפר -->
+    <div id="dapar" class="page">
+        <div class="content-section">
+            <h2 class="section-title">הכנה לדפר - צו ראשון</h2>
+            
+            <div style="text-align: center; margin-bottom: 50px;">
+                <p style="font-size: 1.2rem; color: #000000; max-width: 700px; margin: 0 auto; font-weight: 500;">
+                    מבחן הדפר (דירוג פסיכוטכני) הוא שלב קריטי בצו ראשון. הכנה נכונה יכולה לשפר משמעותית את הציון ולפתוח הזדמנויות בצבא.
+                </p>
+            </div>
+
+            <div class="method-cards">
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>📊</span>
+                        <span>מבחן כמותי - מתמטיקה</span>
+                    </div>
+                    <div class="method-description">
+                        החלק הכמותי כולל: חשבון, אלגברה, גיאומטריה, הסתברות וסטטיסטיקה. נתמקד בטכניקות פתרון מהירות, זיהוי דפוסים וחיזוק הנושאים החלשים שלך. התרגול כולל מבחנים מדומים בתנאי זמן אמיתיים.
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>🧠</span>
+                        <span>חשיבה לוגית ואנליטית</span>
+                    </div>
+                    <div class="method-description">
+                        פיתוח כישורי חשיבה לוגית, זיהוי דפוסים, סדרות מספרים ולוגיקה מילולית. נלמד אסטרטגיות לפתרון בעיות מורכבות ותרגול על שאלות מסוג זה מהמבחנים הקודמים.
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>⏱️</span>
+                        <span>ניהול זמן ואסטרטגיית מבחן</span>
+                    </div>
+                    <div class="method-description">
+                        לימוד טכניקות ניהול זמן אפקטיביות, אסטרטגיות לסדר פתרון השאלות, וטיפים למתמודדות עם לחץ. נתרגל על מבחנים מדומים במתכונת זהה למבחן האמיתי.
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-title">
+                        <span>🎯</span>
+                        <span>מה כלול בהכנה?</span>
+                    </div>
+                    <div class="method-description">
+                        <strong>📚 הכרת החומר</strong> - סקירה מקיפה של כל הנושאים הנדרשים במבחן<br>
+                        <strong>📈 מעקב והערכה</strong> - בדיקה שוטפת של התקדמות וזיהוי נקודות לשיפור<br>
+                        <strong>🌐 שיעורים אונליין או בצפון תל אביב</strong> - גמישות מלאה בבחירת אופן הלמידה
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://wa.me/972547384087?text=שלום! אני מעוניין/ת בהכנה לדפר בצו ראשון" class="btn-primary" target="_blank">
+                    <span>💬</span>
+                    <span>התחל הכנה לדפר - שלח הודעה בוואטסאפ</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- דף טיפים -->
     <div id="tips" class="page">
         <div class="content-section">
             <h2 class="section-title">טיפים ומאמרים</h2>
             
-                <div style="text-align: center; margin-bottom: 50px;">
+            <div style="text-align: center; margin-bottom: 50px;">
                 <p style="font-size: 1.2rem; color: #000000; max-width: 600px; margin: 0 auto; font-weight: 500;">
                     אוסף של עצות מעשיות, טכניקות לימוד וכלים שיעזרו לכם להצליח במתמטיקה ופיזיקה
                 </p>
@@ -870,6 +1037,21 @@
             
             const whatsappUrl = `https://wa.me/972547384087?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.floating-particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
 
         // Initialize particles when page loads
