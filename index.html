@@ -762,22 +762,29 @@
                     submitButton.disabled = true;
                     submitButton.innerHTML = '<span>⏳</span><span>שולח...</span>';
                     
-                    // Submit form data
+                    // Get form data and convert to JSON
                     const formData = new FormData(form);
+                    const object = Object.fromEntries(formData);
+                    const json = JSON.stringify(object);
                     
                     fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        body: formData
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json'
+                        },
+                        body: json
                     })
                     .then(response => response.json())
                     .then(data => {
+                        console.log('Response:', data);
                         if (data.success) {
                             // Hide form and show success message
                             form.style.display = 'none';
                             successMessage.style.display = 'block';
                             successMessage.scrollIntoView({ behavior: 'smooth' });
                         } else {
-                            alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב או צור קשר בטלפון.');
+                            alert('אירעה שגיאה בשליחת הטופס: ' + (data.message || 'שגיאה לא ידועה'));
                         }
                     })
                     .catch(error => {
