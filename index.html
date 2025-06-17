@@ -30,8 +30,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.01) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.03) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 1;
@@ -87,7 +87,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(102, 126, 234, 0.2);
             border-radius: 50%;
             animation: float-particle 20s infinite linear;
         }
@@ -110,14 +110,15 @@
         }
 
         .navbar {
-            background: #000000;
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
             padding: 15px 0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -137,66 +138,48 @@
             justify-content: center;
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #ffffff;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .nav-links a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
             font-size: 0.95rem;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            padding: 8px 16px;
+            border-radius: 6px;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: #ffffff;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 1px;
-            background: #ffffff;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .signup-btn {
-            background: #ffffff;
-            border: 1px solid #ffffff;
-            color: #000000;
-            padding: 8px 20px;
-            border-radius: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            color: #ffffff;
+            padding: 10px 24px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .signup-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: #ffffff;
-            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .page {
@@ -209,6 +192,12 @@
 
         .page.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-section {
@@ -219,7 +208,7 @@
             text-align: center;
             padding: 0 40px;
             position: relative;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.03) 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.05) 100%);
         }
 
         .hero-section::before {
@@ -245,7 +234,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
             animation: fadeInUp 1.5s ease-out;
         }
 
@@ -261,30 +250,30 @@
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: 4.2rem;
+            font-weight: 800;
             color: #000000;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            color: #000000;
+            font-size: 1.6rem;
+            color: #333333;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.4;
         }
 
         .hero-description {
-            font-size: 1.1rem;
-            color: #333333;
-            font-weight: 500;
+            font-size: 1.15rem;
+            color: #555555;
+            font-weight: 400;
             margin-bottom: 50px;
-            line-height: 1.6;
-            max-width: 600px;
+            line-height: 1.7;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -300,78 +289,90 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             border: none;
             color: #ffffff;
-            padding: 15px 35px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            min-width: 250px;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            min-width: 280px;
             justify-content: center;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
-            background: #000000;
+            background: transparent;
             border: 2px solid #000000;
-            color: #ffffff;
-            padding: 15px 35px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
+            color: #000000;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn-secondary:hover {
-            background: #333333;
-            border-color: #333333;
+            background: #000000;
             color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .content-section {
-            padding: 100px 40px;
+            padding: 120px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: #000000;
             text-align: center;
-            margin-bottom: 60px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 80px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
         }
 
         .card {
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            padding: 40px 30px;
+            border-radius: 16px;
+            padding: 50px 35px;
             text-align: center;
             transition: all 0.4s ease;
             transform: translateY(0);
@@ -385,11 +386,11 @@
         .card:nth-child(1)::before {
             content: '∑ ∫ π';
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             font-family: serif;
-            font-size: 2rem;
-            color: rgba(0, 0, 0, 0.04);
+            font-size: 2.2rem;
+            color: rgba(102, 126, 234, 0.08);
             letter-spacing: 0.5rem;
             z-index: 1;
         }
@@ -398,11 +399,11 @@
         .card:nth-child(2)::before {
             content: 'E=mc² F=ma';
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             font-family: serif;
-            font-size: 1rem;
-            color: rgba(0, 0, 0, 0.04);
+            font-size: 1.1rem;
+            color: rgba(118, 75, 162, 0.08);
             line-height: 1.8;
             z-index: 1;
         }
@@ -411,10 +412,10 @@
         .card:nth-child(3)::before {
             content: '●○◆□△';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            color: rgba(0, 0, 0, 0.04);
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: rgba(102, 126, 234, 0.08);
             letter-spacing: 0.3rem;
             z-index: 1;
         }
@@ -433,7 +434,7 @@
         @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(60px);
             }
             to {
                 opacity: 1;
@@ -442,56 +443,58 @@
         }
 
         .card:hover {
-            transform: translateY(-15px) rotateY(5deg);
-            background: rgba(0, 0, 0, 0.08);
-            border-color: rgba(0, 0, 0, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-20px) scale(1.02);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(102, 126, 234, 0.2);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.15);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
         }
 
         .card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 15px;
-        }
-
-        .card-description {
-            font-size: 1rem;
-            color: #000000;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .method-cards {
-            display: grid;
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .method-card {
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            padding: 40px;
-            transition: all 0.3s ease;
-        }
-
-        .method-card:hover {
-            background: rgba(0, 0, 0, 0.08);
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .method-title {
             font-size: 1.4rem;
             font-weight: 700;
             color: #000000;
             margin-bottom: 20px;
+        }
+
+        .card-description {
+            font-size: 1.05rem;
+            color: #333333;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .method-cards {
+            display: grid;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+        }
+
+        .method-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -499,50 +502,53 @@
 
         .method-description {
             font-size: 1.1rem;
-            color: #000000;
-            line-height: 1.7;
-            font-weight: 500;
+            color: #333333;
+            line-height: 1.8;
+            font-weight: 400;
         }
 
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 50px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 10px;
+            font-weight: 600;
             color: #000000;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             color: #000000;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .form-group input::placeholder,
@@ -557,12 +563,12 @@
 
         .contact-info {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .contact-item {
@@ -570,8 +576,8 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-size: 1.15rem;
             color: #000000;
             font-weight: 600;
         }
@@ -579,40 +585,42 @@
         .contact-buttons {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
         }
 
         .btn-whatsapp {
             background: linear-gradient(45deg, #25d366, #128c7e);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
         }
 
         .btn-whatsapp:hover {
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
         }
 
         .btn-call {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
 
         .btn-call:hover {
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
+        /* Success message styles */
+        .success-message {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 20px;
+            animation: slideIn 0.5s ease;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: #ffffff;
-            transition: 0.3s;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -631,25 +639,21 @@
                 flex-wrap: wrap;
             }
 
-            .hamburger {
-                display: none;
-            }
-
             .hero-section {
                 padding: 0 20px;
-                padding-top: 120px;
+                padding-top: 140px;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
             
             .hero-buttons {
@@ -659,31 +663,137 @@
 
             .btn-primary, .btn-secondary {
                 width: 100%;
-                max-width: 300px;
+                max-width: 320px;
                 justify-content: center;
             }
 
             .content-section {
-                padding: 60px 20px;
+                padding: 80px 20px;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 30px;
             }
 
             .contact-form {
                 margin: 0 20px;
-                padding: 30px 20px;
+                padding: 40px 25px;
+            }
+
+            .method-card {
+                padding: 35px 25px;
             }
         }
     </style>
 </head>
 <body>
+    <script>
+        // Define functions at the top of the script
+        function showPage(pageId) {
+            console.log('showPage called with:', pageId);
+            
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and activate the correct nav link
+            const activeLink = document.querySelector(`[onclick*="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.floating-particles');
+            if (!particlesContainer) return;
+            
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded');
+            createParticles();
+            
+            // Handle form submission
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            
+            if (form && successMessage) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalHTML = submitButton.innerHTML;
+                    
+                    // Show loading state
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<span>⏳</span><span>שולח...</span>';
+                    
+                    // Submit form data
+                    const formData = new FormData(form);
+                    
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Hide form and show success message
+                            form.style.display = 'none';
+                            successMessage.style.display = 'block';
+                            successMessage.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב או צור קשר בטלפון.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב או צור קשר בטלפון.');
+                    })
+                    .finally(() => {
+                        // Restore button state
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalHTML;
+                    });
+                });
+            }
+        });
+    </script>
+
     <div class="math-background">
         <div class="math-symbol">∫</div>
         <div class="math-symbol">∑</div>
@@ -700,18 +810,13 @@
         <div class="nav-container">
             <div class="logo">🧠 יהלי שושן</div>
             <ul class="nav-links">
-                <li><a href="#" onclick="showPage('home')" class="active">בית</a></li>
-                <li><a href="#" onclick="showPage('method')">שיטת הוראה</a></li>
-                <li><a href="#" onclick="showPage('dapar')">הכנה לדפר</a></li>
-                <li><a href="#" onclick="showPage('tips')">טיפים</a></li>
-                <li><a href="#" onclick="showPage('contact')">יצירת קשר</a></li>
+                <li><a href="javascript:void(0);" onclick="showPage('home')" class="active">בית</a></li>
+                <li><a href="javascript:void(0);" onclick="showPage('method')">שיטת הוראה</a></li>
+                <li><a href="javascript:void(0);" onclick="showPage('dapar')">הכנה לדפר</a></li>
+                <li><a href="javascript:void(0);" onclick="showPage('tips')">טיפים</a></li>
+                <li><a href="javascript:void(0);" onclick="showPage('contact')">יצירת קשר</a></li>
             </ul>
-            <a href="#" onclick="showPage('contact')" class="signup-btn">התחל עכשיו</a>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <a href="javascript:void(0);" onclick="showPage('contact')" class="signup-btn">התחל עכשיו</a>
         </div>
     </nav>
 
@@ -727,11 +832,11 @@
                     זה הזמן לנצל את החופש ולהגיע מוכנים לשנה הבאה.
                 </div>
                 <div class="hero-buttons">
-                    <a href="#" onclick="showPage('contact')" class="btn-primary">
+                    <a href="javascript:void(0);" onclick="showPage('contact')" class="btn-primary">
                         <span>📝</span>
                         <span>מלאו פרטים ואחזור אליכם</span>
                     </a>
-                    <a href="#" onclick="showPage('method')" class="btn-secondary">
+                    <a href="javascript:void(0);" onclick="showPage('method')" class="btn-secondary">
                         <span>📚</span>
                         <span>שיטת ההוראה</span>
                     </a>
@@ -808,7 +913,7 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="#" onclick="showPage('contact')" class="btn-primary">
+                <a href="javascript:void(0);" onclick="showPage('contact')" class="btn-primary">
                     <span>📝</span>
                     <span>מלאו פרטים ואחזור אליכם</span>
                 </a>
@@ -872,7 +977,7 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="#" onclick="showPage('contact')" class="btn-primary">
+                <a href="javascript:void(0);" onclick="showPage('contact')" class="btn-primary">
                     <span>📝</span>
                     <span>מלאו פרטים ואחזור אליכם</span>
                 </a>
@@ -928,7 +1033,7 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="#" onclick="showPage('contact')" class="btn-primary">
+                <a href="javascript:void(0);" onclick="showPage('contact')" class="btn-primary">
                     <span>📝</span>
                     <span>מלאו פרטים ואחזור אליכם</span>
                 </a>
@@ -946,26 +1051,57 @@
             </div>
 
             <div class="contact-form">
-                <form id="contact-form">
-                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="15265141-eea6-49be-96c4-33b08038e37e">
                     <input type="hidden" name="subject" value="פנייה חדשה מהאתר - שיעורים פרטיים">
+                    <input type="hidden" name="from_name" value="אתר יהלי שושן">
                     
                     <div class="form-group">
-                        <label for="name">שם:</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name">שם מלא:</label>
+                        <input type="text" id="name" name="name" required placeholder="השם שלך">
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-method">מספר טלפון או אימייל:</label>
-                        <input type="text" id="contact-method" name="contact_method" required>
+                        <label for="email">כתובת אימייל:</label>
+                        <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">מספר טלפון:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="050-123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject_field">נושא:</label>
+                        <select id="subject_field" name="lesson_type" required>
+                            <option value="">בחר נושא</option>
+                            <option value="מתמטיקה">מתמטיקה</option>
+                            <option value="פיזיקה">פיזיקה</option>
+                            <option value="הכנה לדפר">הכנה לדפר - צו ראשון</option>
+                            <option value="כמה מקצועות">כמה מקצועות</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">הודעה נוספת (אופציונלי):</label>
+                        <textarea id="message" name="message" placeholder="ספר/י לי על הצרכים שלך, הרמה הנוכחית, מטרות וכל דבר אחר שחשוב לך שאדע..."></textarea>
+                    </div>
+
+                    <!-- Honeypot Spam Protection -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn-primary">
+                            <span>📤</span>
+                            <span>שלח פרטים</span>
+                        </button>
                     </div>
                 </form>
-                
-                <div style="text-align: center; margin-top: 30px;">
-                    <button type="button" class="btn-primary" onclick="submitForm()">
-                        <span>📤</span>
-                        <span>שלח פרטים</span>
-                    </button>
+
+                <div id="success-message" style="display: none;" class="success-message">
+                    <h3>🎉 תודה שפנית אלי!</h3>
+                    <p>קיבלתי את הפרטים שלך ואחזור אליך בהקדם האפשרי (בדרך כלל תוך מספר שעות).</p>
+                    <p>בינתיים, מוזמן/ת לחזור לאתר ולקרוא על שיטת ההוראה שלי.</p>
                 </div>
             </div>
 
@@ -996,90 +1132,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Close mobile menu
-            document.querySelector('.nav-links').classList.remove('active');
-        }
-
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-
-        function submitForm() {
-            const form = document.getElementById('contact-form');
-            const name = document.getElementById('name').value;
-            const contactMethod = document.getElementById('contact-method').value;
-            
-            if (!name || !contactMethod) {
-                alert('אנא מלא את כל השדות');
-                return;
-            }
-            
-            // Disable button during submission
-            const submitButton = event.target;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<span>⏳</span><span>שולח...</span>';
-            
-            // Create form data
-            const formData = new FormData(form);
-            
-            // Submit to Web3Forms
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('הפרטים נשלחו בהצלחה! אחזור אליכם בהקדם.');
-                    form.reset();
-                } else {
-                    alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב.');
-                }
-            })
-            .catch(error => {
-                alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב.');
-            })
-            .finally(() => {
-                // Re-enable button
-                submitButton.disabled = false;
-                submitButton.innerHTML = '<span>📤</span><span>שלח פרטים</span>';
-            });
-        }
-
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.floating-particles');
-            const particleCount = 15;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Initialize particles when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-        });
-    </script>
 </body>
 </html>
